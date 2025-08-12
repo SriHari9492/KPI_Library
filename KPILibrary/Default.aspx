@@ -124,146 +124,187 @@
 }
 
 /* --- End of True Toggle Switch Styles --- */
+
+ /* Style for client-side validation error labels */
+        .client-error-label {
+            color: red;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none; /* Hidden by default */
+        }
+        .client-error-label.show {
+            display: block;
+        }
+
+        .btn-delete {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            cursor: pointer;
+            /* Example: Red color for delete */
+            background-color: red;
+        }
     </style>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         
     <script>
-            function filterTable() {
-                var input = document.getElementById("searchBox");
-                var filter = input.value.toUpperCase();
-                var table = document.getElementById("<%= GridView1.ClientID %>");
-                var trs = table.getElementsByTagName("tr");
+        // >>>>>>>>>> UPDATED SEARCH FUNCTION <<<<<<<<<<
+        function filterTable() {
+            var input = document.getElementById("searchBox");
+            var filter = input.value.toUpperCase();
+            var table = document.getElementById("<%= GridView1.ClientID %>");
+            if (!table) {
+                console.error("GridView table element not found for client-side search!");
+                return;
+            }
+            var trs = table.getElementsByTagName("tr");
+            for (var i = 1; i < trs.length; i++) { // Start from 1 to skip header
+                var tds = trs[i].getElementsByTagName("td");
+                var showRow = false;
 
-                for (var i = 1; i < trs.length; i++) {
-                    var tds = trs[i].getElementsByTagName("td");
-                    var showRow = false;
+                // --- UPDATED SEARCH LOGIC ---
+                // Check specific columns: KPI ID (index 3) and Order (index 10)
+                // IMPORTANT: Adjust these indices if your column order in the GridView changes!
+                // Based on your ASPX structure:
+                // Columns: Actions(0), Metric(1), KPI Name(2), KPI ID(3), Short Desc(4), ... , Order(10), ...
+                var kpiIdCell = tds[3]; // KPI ID is in the 4th column (index 3)
+                var orderCell = tds[10]; // OrderWithinSecton is in the 11th column (index 10)
 
-                    for (var j = 0; j < tds.length; j++) {
-                        if (tds[j]) {
-                            var txt = tds[j].textContent || tds[j].innerText;
-                            if (txt.toUpperCase().indexOf(filter) > -1) {
-                                showRow = true;
-                                break;
-                            }
-                        }
+                // Check if KPI ID cell matches
+                if (kpiIdCell) {
+                    var kpiIdTxt = kpiIdCell.textContent || kpiIdCell.innerText;
+                    if (kpiIdTxt.toUpperCase().indexOf(filter) > -1) {
+                        showRow = true;
                     }
-                    trs[i].style.display = showRow ? "" : "none";
-                }
-            }
-            let lblKPIError = null;
-            let inputField = null;
-            let isCheckingKPI = false;
-
-            function showPopup() {
-                document.getElementById('kpiModal').style.display = 'block';
-
-
-
-
-            }
-
-            function hidePopup() {
-                document.getElementById('kpiModal').style.display = 'none';
-
-
-                document.getElementById("<%= lblOrderError.ClientID %>").style.display = "none";
-            document.getElementById("<%= lblDuplicateMetricKPIError.ClientID %>").style.display = "none";
-            document.getElementById("<%= lblKPIError.ClientID %>").style.display = "none";
-            }
-
-            function showElement(element) {
-                if (element) {
-                    element.classList.add('show');
-                }
-            }
-
-            function hideElement(element) {
-                if (element) {
-                    element.classList.remove('show');
-                }
-            }
-
-            function debounce(func, delay) {
-                let timer;
-                return function () {
-                    clearTimeout(timer);
-                    timer = setTimeout(() => {
-                        func.apply(this, arguments);
-                    }, delay);
-                };
-            }
-
-            function createKPIErrorLabel() {
-                const inputField = document.getElementById('<%=txtKPIID.ClientID%>');
-                if (!inputField) {
-                    //  console.error("Cannot create error label: Input field not found");
-                    return null;
                 }
 
-                const errorSpan = document.createElement('span');
-                errorSpan.id = 'dynamicKPIError';
-                errorSpan.className = 'error-span';
-                errorSpan.innerText = "KPI ID already exists";
-                inputField.parentNode.appendChild(errorSpan);
-                console.log("Dynamic error label created");
-                return errorSpan;
-            }
-
-            function checkKPIID() {
-                inputField = document.getElementById('<%=txtKPIID.ClientID%>')
-            lblKPIError = document.getElementById('<%=lblKPIError.ClientID%>') || createKPIErrorLabel();
-                const kpiID = inputField.value.trim().repalce(/\s{2,}/g, '');
-                inputField.value = kpiID;
-                if (kpiID === "") return;
-
-                $.ajax({
-                    type: "POST",
-                    url: "Default.aspx/CheckKPIExists",
-                    data: JSON.stringify({ kpiID: kpiID }),
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    timeout: 10000,
-                    success: function (response) {
-                        console.log("AJAX Response:", response);
-                        if (response.d === true) {
-                            lblKPIError.innerText = "KPI ID already exists";
-                            lblKPIError.style.display = "inline";
-                            // showElement(lblKPIError);
-                        } else {
-                            // hideElement(lblKPIError);
-                            lblKPIError.style.display = "none";
-                        }
-                        // isCheckingKPI = false;
-                    },
-                    /*  error: function (xhr, status, error) {
-                          console.error("AJAX error:", xhr.status, xhr.responseText, error);
-                          isCheckingKPI = false;
-                      }*/
-                });
-            }
-
-            function validateBeforeSubmit() {
-                if (!inputField) {
-                    inputField = document.getElementById('<%=txtKPIID.ClientID%>');
-            }
-            if (!lblKPIError) {
-                lblKPIError = document.getElementById('<%=lblKPIError.ClientID%>');
-                if (!lblKPIError) {
-                    lblKPIError = document.getElementById('dynamicKPIError') || createKPIErrorLabel();
+                // If KPI ID didn't match, check Order cell
+                if (!showRow && orderCell) {
+                    var orderTxt = orderCell.textContent || orderCell.innerText;
+                    // Simple text match on the cell content (e.g., "123")
+                    if (orderTxt.toUpperCase().indexOf(filter) > -1) {
+                        showRow = true;
+                    }
                 }
+                // --- END UPDATED SEARCH LOGIC ---
+
+                trs[i].style.display = showRow ? "" : "none";
+            }
+        }
+
+        // >>>>>>>>>> END OF UPDATED SEARCH FUNCTION <<<<<<<<<
+        let lblKPIError = null;
+        let inputField = null;
+        let isCheckingKPI = false;
+
+        function showPopup() {
+            document.getElementById('kpiModal').style.display = 'block';
+
+        }
+
+        function hidePopup() {
+            document.getElementById('kpiModal').style.display = 'none';
+
+
+            document.getElementById("<%= lblOrderError.ClientID %>").style.display = "none";
+                document.getElementById("<%= lblDuplicateMetricKPIError.ClientID %>").style.display = "none";
+                document.getElementById("<%= lblKPIError.ClientID %>").style.display = "none";
+        }
+
+        function showElement(element) {
+            if (element) {
+                element.classList.add('show');
+            }
+        }
+
+        function hideElement(element) {
+            if (element) {
+                element.classList.remove('show');
+            }
+        }
+
+        function debounce(func, delay) {
+            let timer;
+            return function () {
+                clearTimeout(timer);
+                timer = setTimeout(() => {
+                    func.apply(this, arguments);
+                }, delay);
+            };
+        }
+
+        function createKPIErrorLabel() {
+            const inputField = document.getElementById('<%=txtKPIID.ClientID%>');
+            if (!inputField) {
+                //  console.error("Cannot create error label: Input field not found");
+                return null;
             }
 
-            if (!inputField || !lblKPIError) {
-                console.error("Input field or error label not found during submission");
-                return false;
-            }
+            const errorSpan = document.createElement('span');
+            errorSpan.id = 'dynamicKPIError';
+            errorSpan.className = 'error-span';
+            errorSpan.innerText = "KPI ID already exists";
+            inputField.parentNode.appendChild(errorSpan);
+            console.log("Dynamic error label created");
+            return errorSpan;
+        }
 
-            var kpiID = inputField.value.trim().replace(/\s{2,}/g, ' ');
+        function checkKPIID() {
+            inputField = document.getElementById('<%=txtKPIID.ClientID%>')
+                lblKPIError = document.getElementById('<%=lblKPIError.ClientID%>') || createKPIErrorLabel();
+            const kpiID = inputField.value.trim().repalce(/\s{2,}/g, '');
             inputField.value = kpiID;
+            if (kpiID === "") return;
 
-            var isEdit = document.getElementById('<%=hfIsEdit.ClientID%>');
-            var originalKPIID = document.getElementById('<%=hfKPIID.ClientID%>');
+            $.ajax({
+                type: "POST",
+                url: "Default.aspx/CheckKPIExists",
+                data: JSON.stringify({ kpiID: kpiID }),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                timeout: 10000,
+                success: function (response) {
+                    console.log("AJAX Response:", response);
+                    if (response.d === true) {
+                        lblKPIError.innerText = "KPI ID already exists";
+                        lblKPIError.style.display = "inline";
+                        // showElement(lblKPIError);
+                    } else {
+                        // hideElement(lblKPIError);
+                        lblKPIError.style.display = "none";
+                    }
+                    // isCheckingKPI = false;
+                },
+                /*  error: function (xhr, status, error) {
+                      console.error("AJAX error:", xhr.status, xhr.responseText, error);
+                      isCheckingKPI = false;
+                  }*/
+            });
+        }
+
+        function validateBeforeSubmit() {
+            if (!inputField) {
+                inputField = document.getElementById('<%=txtKPIID.ClientID%>');
+                }
+                if (!lblKPIError) {
+                    lblKPIError = document.getElementById('<%=lblKPIError.ClientID%>');
+                    if (!lblKPIError) {
+                        lblKPIError = document.getElementById('dynamicKPIError') || createKPIErrorLabel();
+                    }
+                }
+
+                if (!inputField || !lblKPIError) {
+                    console.error("Input field or error label not found during submission");
+                    return false;
+                }
+
+                var kpiID = inputField.value.trim().replace(/\s{2,}/g, ' ');
+                inputField.value = kpiID;
+
+                var isEdit = document.getElementById('<%=hfIsEdit.ClientID%>');
+                var originalKPIID = document.getElementById('<%=hfKPIID.ClientID%>');
             if (isEdit && originalKPIID && isEdit.value === "true" && kpiID === originalKPIID.value) {
                 hideElement(lblKPIError);
                 return true;
@@ -385,7 +426,7 @@
     for (var i = 0; i < rows.length; i++) {
         var row = [], cols = rows[i].querySelectorAll("td, th"); // Get cells (data & header)
 
-        for (var j = 0; j < cols.length; j++) {
+        for (var j = 1; j < cols.length; j++) {
             // Get cell text and clean it for CSV
             // Handle potential commas, quotes, newlines within cell data
             let cellData = cols[j].innerText !== undefined ? cols[j].innerText : cols[j].textContent;
@@ -490,7 +531,7 @@ $(document).ready(function () {
     // ... (rest of your existing $(document).ready code) ...
 });
 
-       
+
     </script>
    
     <div id="kpiModal" class="modal">
@@ -626,9 +667,10 @@ $(document).ready(function () {
     <button type="button" id="btnExportCSV" onclick="exportTableToCSV('KPIs_<%= DateTime.Now.ToString("yyyyMMdd_HHmmss") %>.csv')" class="btn-add" style="margin-right: 10px;">Export to CSV</button>
             </div>
 
-    <label for="searchBox"><strong>Search:</strong></label>
-    <input type="text" id="searchBox" placeholder="Type to search..." style="width: 250px; padding: 5px;"  onkeyup="filterTable()" />
-</div>
+     <label for="searchBox"><strong>Search:</strong></label>
+        <input type="text" id="searchBox" placeholder="Type to search..." style="width: 250px; padding: 5px;"
+               onkeyup="filterTable()" onkeydown="if(event.key==='Enter') event.preventDefault();" /> 
+    </div>
     <div class="kpi-table-scroll">
     <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" CssClass="grid-style"  ShowHeader ="true" UseAccessibleHeader="true" EmptyDataText="No KPI data available" OnRowCommand="GridView1_RowCommand"  AllowSorting="true" OnSorting="GridView1_Sorting">
         <Columns>
@@ -640,7 +682,7 @@ $(document).ready(function () {
                     <asp:Button ID="btnEdit" runat="server" Text="Edit" CommandName="EditKPI" CommandArgument='<%# Container.DataItemIndex %>' CssClass="btn-edit" />
                     <asp:Button ID="btnDelete" runat="server" Text="Delete"
                     CommandName="DeleteKPI" CommandArgument='<%# Container.DataItemIndex %>'
-                    CssClass="btn-edit" OnClientClick="return confirm('Are you sure you want to delete this KPI?');" />
+                    CssClass="btn-delete" OnClientClick="return confirm('Are you sure you want to delete this KPI?');" />
             </ItemTemplate>
             </asp:TemplateField>
             <asp:BoundField DataField="KPI or Standalone Metric" HeaderText="Metric" SortExpression="KPI or Standalone Metric" />
@@ -708,4 +750,3 @@ $(document).ready(function () {
     </asp:GridView>
         </div>
 </asp:Content>
-

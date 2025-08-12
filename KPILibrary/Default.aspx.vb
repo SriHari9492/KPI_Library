@@ -9,7 +9,7 @@ Imports System.Text.RegularExpressions
 <ScriptService()>
 Public Class _Default
     Inherits Page
-        
+
     Private Property SortExpression As String
         Get
             Return If(ViewState("SortExpression"), "[KPI or Standalone Metric]") ' Default sort column
@@ -424,7 +424,7 @@ Public Class _Default
         chkFlagRequest.Checked = False
 
 
-        ' Hide all error labels 
+        ' Hide all error labels
         lblKPIError.Visible = False
         lblOrderError.Visible = False
         lblDuplicateMetricKPIError.Visible = False
@@ -437,7 +437,7 @@ Public Class _Default
     End Sub
 
 
-    ' >>>>>>>>>> START OF TOGGLE FILTER CODE Sri Hari 1234567890 <<<<<<<<<<
+    ' >>>>>>>>>> START OF TOGGLE FILTER CODE <<<<<<<<<<
     ' >>>>>>>>>> START OF FILTERING CODE <<<<<<<<<<
     Protected Sub btnApplyStatusFilter_Click(sender As Object, e As EventArgs)
         ' Get the filter value from the HiddenField
