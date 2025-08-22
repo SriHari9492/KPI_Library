@@ -158,6 +158,15 @@ Partial Public Class _Default
     Protected WithEvents txtSubject_ME_Email As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''ddlSubj_Obj control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ddlSubj_Obj As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
     '''chkActive control.
     '''</summary>
     '''<remarks>
@@ -237,6 +246,15 @@ Partial Public Class _Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents chkFlagRequest As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''txtComment control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtComment As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''btnSubmit control.

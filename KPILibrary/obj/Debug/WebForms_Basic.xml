@@ -181,6 +181,15 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:KPILibrary._Default._ddlSubj_Obj">
+<summary>
+ddlSubj_Obj control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:KPILibrary._Default._chkActive">
 <summary>
 chkActive control.
@@ -256,6 +265,15 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:KPILibrary._Default._chkFlagRequest">
 <summary>
 chkFlagRequest control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:KPILibrary._Default._txtComment">
+<summary>
+txtComment control.
 </summary>
 <remarks>
 Auto-generated field.

@@ -70,7 +70,8 @@ Public Class _Default
         Dim orderText As String = CleanInput(txtOrder.Text)
         Dim Constraints As String = CleanInput(txtConstraints.Text)
         Dim Subject_ME_Email As String = CleanInput(txtSubject_ME_Email.Text)
-
+        Dim Subj_Obj As String = CleanInput(ddlSubj_Obj.SelectedValue)
+        Dim Comment As String = CleanInput(txtComment.Text)
 
         ' Reset all error labels
         lblKPIError.Visible = False
@@ -84,6 +85,7 @@ Public Class _Default
            String.IsNullOrWhiteSpace(denom) OrElse String.IsNullOrWhiteSpace(unit) OrElse
            String.IsNullOrWhiteSpace(datasource) OrElse String.IsNullOrWhiteSpace(orderText) OrElse
            String.IsNullOrWhiteSpace(Constraints) OrElse String.IsNullOrWhiteSpace(Subject_ME_Email) Then
+
 
             ScriptManager.RegisterStartupScript(Me, Me.GetType(), "ShowModal_" & Guid.NewGuid().ToString(), "showPopup();", True)
             Return
@@ -178,6 +180,7 @@ Public Class _Default
                 SqlDataSource1.UpdateParameters("OrderWithinSecton").DefaultValue = orderValue.ToString()
                 SqlDataSource1.UpdateParameters("Constraints").DefaultValue = Constraints
                 SqlDataSource1.UpdateParameters("Subject_ME_Email").DefaultValue = Subject_ME_Email
+                SqlDataSource1.UpdateParameters("Subj_Obj").DefaultValue = Subj_Obj
                 SqlDataSource1.UpdateParameters("Active").DefaultValue = If(chkActive.Checked, "Y", "N")
                 SqlDataSource1.UpdateParameters("FLAG_DIVISINAL").DefaultValue = If(chkFlagDivisinal.Checked, "Y", "N")
                 SqlDataSource1.UpdateParameters("FLAG_VENDOR").DefaultValue = If(chkFlagVendor.Checked, "Y", "N")
@@ -187,7 +190,7 @@ Public Class _Default
                 SqlDataSource1.UpdateParameters("FLAG_DEUBALvl4").DefaultValue = If(chkFlagDeuballvl4.Checked, "Y", "N")
                 SqlDataSource1.UpdateParameters("FLAG_HRID").DefaultValue = If(chkFlagHRID.Checked, "Y", "N")
                 SqlDataSource1.UpdateParameters("FLAG_REQUESTID").DefaultValue = If(chkFlagRequest.Checked, "Y", "N")
-
+                SqlDataSource1.UpdateParameters("Comment").DefaultValue = Comment
 
                 SqlDataSource1.Update()
             Else
@@ -204,6 +207,7 @@ Public Class _Default
                 SqlDataSource1.InsertParameters("OrderWithinSecton").DefaultValue = orderValue.ToString()
                 SqlDataSource1.InsertParameters("Constraints").DefaultValue = Constraints
                 SqlDataSource1.InsertParameters("Subject_ME_Email").DefaultValue = Subject_ME_Email
+                SqlDataSource1.InsertParameters("Subj_Obj").DefaultValue = Subj_Obj
                 SqlDataSource1.InsertParameters("Active").DefaultValue = If(chkActive.Checked, "Y", "N")
                 SqlDataSource1.InsertParameters("FLAG_DIVISINAL").DefaultValue = If(chkFlagDivisinal.Checked, "Y", "N")
                 SqlDataSource1.InsertParameters("FLAG_VENDOR").DefaultValue = If(chkFlagVendor.Checked, "Y", "N")
@@ -213,6 +217,7 @@ Public Class _Default
                 SqlDataSource1.InsertParameters("FLAG_DEUBALvl4").DefaultValue = If(chkFlagDeuballvl4.Checked, "Y", "N")
                 SqlDataSource1.InsertParameters("FLAG_HRID").DefaultValue = If(chkFlagHRID.Checked, "Y", "N")
                 SqlDataSource1.InsertParameters("FLAG_REQUESTID").DefaultValue = If(chkFlagRequest.Checked, "Y", "N")
+                SqlDataSource1.InsertParameters("Comment").DefaultValue = Comment
 
                 SqlDataSource1.Insert()
             End If
@@ -371,6 +376,8 @@ Public Class _Default
                         txtOrder.Text = reader("OrderWithinSecton").ToString()
                         txtConstraints.Text = reader("Constraints").ToString()
                         txtSubject_ME_Email.Text = reader("Subject_ME_Email").ToString()
+                        'ddlSubj_Obj.SelectedValue = reader("Subj_Obj").ToString()
+                        txtComment.Text = reader("Comment").ToString()
                         chkActive.Checked = reader("Active").ToString().ToUpper() = "Y"
                         chkFlagDivisinal.Checked = reader("FLAG_DIVISINAL").ToString().ToUpper() = "Y"
                         chkFlagVendor.Checked = reader("FLAG_VENDOR").ToString().ToUpper() = "Y"
@@ -381,6 +388,12 @@ Public Class _Default
                         chkFlagHRID.Checked = reader("FLAG_HRID").ToString().ToUpper() = "Y"
                         chkFlagRequest.Checked = reader("FLAG_REQUESTID").ToString().ToUpper() = "Y"
 
+                        Dim Subj_Obj As String = reader("Subj_Obj").ToString()
+                        If ddlSubj_Obj.Items.FindByValue(Subj_Obj) IsNot Nothing Then
+                            ddlSubj_Obj.SelectedValue = Subj_Obj
+                        Else
+                            ddlSubj_Obj.SelectedValue = "" ' Fallback
+                        End If
                     End If
                 End Using
             End Using
@@ -410,6 +423,9 @@ Public Class _Default
         txtOrder.Text = ""
         txtConstraints.Text = ""
         txtSubject_ME_Email.Text = ""
+        ddlSubj_Obj.SelectedIndex = "0"
+        txtComment.Text = " "
+
         txtKPIID.Enabled = True
 
 

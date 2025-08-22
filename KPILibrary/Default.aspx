@@ -70,7 +70,7 @@
 							text-align: left;	background-color: #f2f2f2; }
         .modal input[type="text"], .modal textarea {
             width: 520px; max-width: none !important; box-sizing: border-box; font-family: Arial,Helvetica, sans-serif; font-size:14px
-        }
+        } 
         /* --- True Toggle Switch Styles --- */
 /* --- True Toggle Switch Styles (Keep or remove .toggle-state-all styles) --- */
 .toggle-switch-ui {
@@ -149,7 +149,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         
-    <script>
+    <script> 
         // >>>>>>>>>> UPDATED SEARCH FUNCTION <<<<<<<<<<
         function filterTable() {
             var input = document.getElementById("searchBox");
@@ -209,8 +209,8 @@
 
 
             document.getElementById("<%= lblOrderError.ClientID %>").style.display = "none";
-                document.getElementById("<%= lblDuplicateMetricKPIError.ClientID %>").style.display = "none";
-                document.getElementById("<%= lblKPIError.ClientID %>").style.display = "none";
+            document.getElementById("<%= lblDuplicateMetricKPIError.ClientID %>").style.display = "none";
+            document.getElementById("<%= lblKPIError.ClientID %>").style.display = "none";
         }
 
         function showElement(element) {
@@ -253,7 +253,7 @@
 
         function checkKPIID() {
             inputField = document.getElementById('<%=txtKPIID.ClientID%>')
-                lblKPIError = document.getElementById('<%=lblKPIError.ClientID%>') || createKPIErrorLabel();
+            lblKPIError = document.getElementById('<%=lblKPIError.ClientID%>') || createKPIErrorLabel();
             const kpiID = inputField.value.trim().repalce(/\s{2,}/g, '');
             inputField.value = kpiID;
             if (kpiID === "") return;
@@ -287,24 +287,24 @@
         function validateBeforeSubmit() {
             if (!inputField) {
                 inputField = document.getElementById('<%=txtKPIID.ClientID%>');
-                }
+            }
+            if (!lblKPIError) {
+                lblKPIError = document.getElementById('<%=lblKPIError.ClientID%>');
                 if (!lblKPIError) {
-                    lblKPIError = document.getElementById('<%=lblKPIError.ClientID%>');
-                    if (!lblKPIError) {
-                        lblKPIError = document.getElementById('dynamicKPIError') || createKPIErrorLabel();
-                    }
+                    lblKPIError = document.getElementById('dynamicKPIError') || createKPIErrorLabel();
                 }
+            }
 
-                if (!inputField || !lblKPIError) {
-                    console.error("Input field or error label not found during submission");
-                    return false;
-                }
+            if (!inputField || !lblKPIError) {
+                console.error("Input field or error label not found during submission");
+                return false;
+            }
 
-                var kpiID = inputField.value.trim().replace(/\s{2,}/g, ' ');
-                inputField.value = kpiID;
+            var kpiID = inputField.value.trim().replace(/\s{2,}/g, ' ');
+            inputField.value = kpiID;
 
-                var isEdit = document.getElementById('<%=hfIsEdit.ClientID%>');
-                var originalKPIID = document.getElementById('<%=hfKPIID.ClientID%>');
+            var isEdit = document.getElementById('<%=hfIsEdit.ClientID%>');
+            var originalKPIID = document.getElementById('<%=hfKPIID.ClientID%>'); 
             if (isEdit && originalKPIID && isEdit.value === "true" && kpiID === originalKPIID.value) {
                 hideElement(lblKPIError);
                 return true;
@@ -382,7 +382,8 @@
                         return false;*/
                     console.log("submit clicked - letting server -side handle validation.");
                     
-                });
+  
+            });
         });
 
         function showKPIError(message) {
@@ -543,7 +544,8 @@ $(document).ready(function () {
             <tr><td>Name:</td><td><asp:TextBox ID="txtKPIName" runat="server" /><asp:Label ID="lblDuplicateMetricKPIError" runat="server"   ForeColor="Red" Style="color: red;font-size: 12px; margin-top:5px;display:block;"  /></td></tr>
             <tr><td>KPI ID:</td><td><asp:TextBox ID="txtKPIID" runat="server" /><asp:Label ID="lblKPIError" runat="server" CssClass="error-span" Text="KPI ID already exists" ForeColor="Red" Visible="false" /></td></tr>
             <tr><td>Short Desc:</td><td><asp:TextBox ID="txtShortDesc" runat="server" TextMode="MultiLine" Rows="3" /></td></tr>
-            <tr><td>Order:</td><td><asp:TextBox ID="txtOrder" runat="server" /><asp:Label ID="lblOrderError" runat="server"   Text="Please add numbers between 1–999" ForeColor="Red" Style="color: red;font-size: 12px; margin-top:5px;display:block;"  /></td></tr>
+           <tr><td>Order:</td><td><asp:TextBox ID="txtOrder" runat="server" /><asp:Label ID="lblOrderError" runat="server"   Text="Please add numbers between 1–999" ForeColor="Red" Style="color: red;font-size: 12px; margin-top:5px;display:block;"  /></td></tr>
+           
             <tr><td>Impact:</td><td><asp:TextBox ID="txtImpact" runat="server" TextMode="MultiLine" Rows="3" /></td></tr>
             <tr><td>Numerator:</td><td><asp:TextBox ID="txtNumerator" runat="server" TextMode="MultiLine" Rows="3" /></td></tr>
             <tr><td>Denominator:</td><td><asp:TextBox ID="txtDenom" runat="server" TextMode="MultiLine" Rows="3" /></td></tr>
@@ -551,6 +553,13 @@ $(document).ready(function () {
             <tr><td>Datasource:</td><td><asp:TextBox ID="txtDatasource" runat="server" /></td></tr>
             <tr><td>Constraints:</td><td><asp:TextBox ID="txtConstraints" runat="server" /></td></tr>
             <tr><td>Subject_ME_Email:</td><td><asp:TextBox ID="txtSubject_ME_Email" runat="server" TextMode="MultiLine" Rows="3"/></td></tr>
+            <tr><td>OBJ_Subj:</td> <td> <asp:DropDownList ID="ddlSubj_Obj" runat="server"> 
+               <asp:ListItem Text="Please Select" Value="NULL" />
+                <asp:ListItem Text="Subjective" Value="Subjective" />
+                <asp:ListItem Text="Objective" Value="Objective" />
+            </asp:DropDownList></td> </tr>
+            
+            
             <tr><td>Active:</td><td><label class="toggle-switch"><asp:CheckBox ID="chkActive" runat="server" /><span class="slider"></span></label></td></tr>
             <tr><td>FLAG_DIVISINAL:</td><td><label class="toggle-switch"><asp:CheckBox ID="chkFlagDivisinal" runat="server" /><span class="slider"></span></label></td></tr>
             <tr><td>FLAG_VENDOR:</td><td><label class="toggle-switch"><asp:CheckBox ID="chkFlagVendor" runat="server" /><span class="slider"></span></label></td></tr>
@@ -560,8 +569,10 @@ $(document).ready(function () {
             <tr><td>FLAG_DEUBALvl4:</td><td><label class="toggle-switch"><asp:CheckBox ID="chkFlagDeuballvl4" runat="server" /><span class="slider"></span></label></td></tr>
             <tr><td>FLAG_HRID:</td><td><label class="toggle-switch"><asp:CheckBox ID="chkFlagHRID" runat="server" /><span class="slider"></span></label></td></tr>
             <tr><td>FLAG_REQUESTID:</td><td><label class="toggle-switch"><asp:CheckBox ID="chkFlagRequest" runat="server" /><span class="slider"></span></label></td></tr>
-            
-            <tr><td colspan="2" style="text-align:center;"><asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClick="btnSubmit_Click" CssClass="btn-add" /></td></tr>
+            <tr><td>Comment:</td><td><asp:TextBox ID="txtComment" runat="server" TextMode="MultiLine" Rows="5" Width="520px" /></td></tr>
+     
+             <!-- Optional: Add a character counter or validation if needed -->
+             <tr><td colspan="2" style="text-align:center;"><asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClick="btnSubmit_Click" CssClass="btn-add" /></td></tr>
             
         </table>
         <asp:HiddenField ID="hfIsEdit" runat="server" />
@@ -598,6 +609,7 @@ $(document).ready(function () {
             <asp:Parameter Name="OrderWithinSecton" />
             <asp:Parameter Name="Constraints" />
             <asp:Parameter Name="Subject_ME_Email" />
+            <asp:parameter Name="Subj_Obj" />
             <asp:Parameter Name="Active" />
             <asp:Parameter Name="FLAG_DIVISINAL" />
             <asp:Parameter Name="FLAG_VENDOR" />
@@ -607,6 +619,7 @@ $(document).ready(function () {
             <asp:Parameter Name="FLAG_DEUBALvl4" />
             <asp:Parameter Name="FLAG_HRID" />
             <asp:Parameter Name="FLAG_REQUESTID" />
+            <asp:Parameter Name="Comment" />
 
         </InsertParameters>
         <UpdateParameters>
@@ -623,6 +636,7 @@ $(document).ready(function () {
             <asp:Parameter Name="OrderWithinSecton" />
             <asp:Parameter Name="Constraints" />
             <asp:Parameter Name="Subject_ME_Email" />
+            <asp:parameter Name="Subj_Obj" />
             <asp:Parameter Name="Active" />
             <asp:Parameter Name="FLAG_DIVISINAL" />
             <asp:Parameter Name="FLAG_VENDOR" />
@@ -632,6 +646,7 @@ $(document).ready(function () {
             <asp:Parameter Name="FLAG_DEUBALvl4" />
             <asp:Parameter Name="FLAG_HRID" />
             <asp:Parameter Name="FLAG_REQUESTID" />
+            <asp:Parameter Name="Comment" />
 
         </UpdateParameters>
          <DeleteParameters>
@@ -697,6 +712,7 @@ $(document).ready(function () {
             <asp:BoundField DataField="OrderWithinSecton" HeaderText="Order" SortExpression="OrderWithinSecton" />
             <asp:BoundField DataField="Constraints" HeaderText="Constraints" SortExpression="Constraints" />
             <asp:BoundField DataField="Subject_ME_Email" HeaderText="Subject_ME_Email" SortExpression="Subject_ME_Email" />
+            <asp:BoundField DataField="Subj_Obj" HeaderText="Subj/Obj" SortExpression="Subj_Obj" />
             <asp:TemplateField HeaderText="Active" SortExpression="Active"><ItemTemplate><%# If(Eval("Active").ToString() = "Y", "YES", "NO") %></ItemTemplate></asp:TemplateField>
             <asp:TemplateField HeaderText="FLAG DIVISINAL" SortExpression="FLAG_DIVISINAL"><ItemTemplate><%# If(Eval("FLAG_DIVISINAL").ToString() = "Y", "YES", "NO") %></ItemTemplate></asp:TemplateField>
             <asp:TemplateField HeaderText="FLAG VENDOR" SortExpression="FLAG_VENDOR"><ItemTemplate><%# If(Eval("FLAG_VENDOR").ToString() = "Y", "YES", "NO") %></ItemTemplate></asp:TemplateField>
@@ -706,6 +722,8 @@ $(document).ready(function () {
             <asp:TemplateField HeaderText="FLAG DEUBALvl4" SortExpression="FLAG DEUBALvl4"><ItemTemplate><%# If(Eval("FLAG_DEUBALvl4").ToString() = "Y", "YES", "NO") %></ItemTemplate></asp:TemplateField>
             <asp:TemplateField HeaderText="FLAG HRID" SortExpression="FLAG HRID"><ItemTemplate><%# If(Eval("FLAG_HRID").ToString() = "Y", "YES", "NO") %></ItemTemplate></asp:TemplateField>
             <asp:TemplateField HeaderText="FLAG REQUESTID" SortExpression="FLAG REQUESTID"><ItemTemplate><%# If(Eval("FLAG_REQUESTID").ToString() = "Y", "YES", "NO") %></ItemTemplate></asp:TemplateField>
+            <asp:BoundField DataField="Comment" HeaderText="Comment" SortExpression="Comment" />
+
             
         </Columns>
         <EmptyDataTemplate>
@@ -726,6 +744,7 @@ $(document).ready(function () {
                 <th>OrderWithinSecton</th>
                 <th>Constraints</th>
                 <th>Subject_ME_Email</th>
+                <th>Subj_Obj</th>
                 <th>Active</th>
                 <th>FLAG_DIVISINAL</th>
                 <th>FLAG_VENDOR</th>
@@ -735,6 +754,7 @@ $(document).ready(function () {
                 <th>FLAG_DEUBALvl4</th>
                 <th>FLAG_HRID</th>
                 <th>FLAG_REQUESTID</th>
+                <th>Comment</th>
 
                 <!-- Add any other headers manually -->
             </tr>
