@@ -145,11 +145,122 @@
             /* Example: Red color for delete */
             background-color: red;
         }
+
+           .select {
+      font-size: 16px;
+      padding: 12px;
+      width: 80%;
+      max-width: 500px;
+      margin: 20px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      /*box-shadow: 0 2px 6px rgba(0,0,0,0.1);*/
+    }
+    .time {
+      font-size: 18px;
+      margin-top: 20px;
+      color: #27ae60;
+      line-height: 1.5;
+      min-height: 50px;
+    }
+    .placeholder {
+      color: #7f8c8d;
+      font-style: italic;
+    }
+     .hidden {
+      display: none;
+    }
+
     </style>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         
+      <h2>🌎 Select a Time Zone</h2>
+  <select id="tzSelect">
+    <option value="">Loading time zones...</option>
+  </select>
+  <div id="time" class="placeholder">Select a time zone to see live time.</div>
+
     <script> 
+
+        const timeZones = Intl.supportedValuesOf('timeZone');
+
+        const select = document.getElementById('tzSelect');
+        const timeDiv = document.getElementById('time');
+
+        // Step 2: Format each time zone as "City (Region)" for readability
+        const formattedZones = timeZones.map(tz => {
+            const parts = tz.split('/');
+            const region = parts[0];
+            const city = parts.slice(1).join(' ').replace(/_/g, ' ');
+            return {
+                tz,
+                label: city ? `${city} (${region})` : region
+            };
+        });
+
+        // Sort alphabetically by display name
+        formattedZones.sort((a, b) => a.label.localeCompare(b.label));
+
+        // Step 3: Populate dropdown
+        select.innerHTML = ''; // Clear loading message
+        const defaultOption = document.createElement('option');
+        defaultOption.value = '';
+        defaultOption.textContent = '-- Select Time Zone --';
+        select.appendChild(defaultOption);
+
+        formattedZones.forEach(({ label, tz }) => {
+            const option = new Option(label, tz);
+            select.appendChild(option);
+        });
+
+        // Step 4: Function to update time based on selected time zone
+        function updateTime() {
+            const tz = select.value;
+
+            if (!tz) {
+                timeDiv.textContent = 'Please select a time zone.';
+                timeDiv.className = 'placeholder';
+                return;
+            }
+
+            try {
+                const now = new Date();
+                const options = {
+                    timeZone: tz,
+                    timeStyle: 'long',
+                    dateStyle: 'full',
+                    hour12: true
+                };
+
+                const timeString = new Intl.DateTimeFormat(navigator.language || 'en-US', options)
+                    .format(now);
+
+                timeDiv.textContent = timeString;
+                timeDiv.className = ''; // Remove placeholder style
+            } catch (e) {
+                timeDiv.textContent = 'Could not display time for this zone.';
+                timeDiv.className = 'placeholder';
+            }
+        }
+
+        // Step 5: Initial update
+        updateTime();
+
+        // Step 6: Update every second for live clock
+        setInterval(updateTime, 1000);
+
+        // Step 7: Also update when user changes selection
+        select.addEventListener('change', updateTime);
+
+
+
+
+
+
+
+
+
         // >>>>>>>>>> UPDATED SEARCH FUNCTION <<<<<<<<<<
         function filterTable() {
             var input = document.getElementById("searchBox");
@@ -533,6 +644,11 @@ $(document).ready(function () {
 });
 
 
+        function focusKPIInput() {
+            var el = document.getElementById('<%=txtKPIID.ClientID%>');
+       if (el) el.focus();
+   }
+
     </script>
    
     <div id="kpiModal" class="modal">
@@ -687,7 +803,7 @@ $(document).ready(function () {
                onkeyup="filterTable()" onkeydown="if(event.key==='Enter') event.preventDefault();" /> 
     </div>
     <div class="kpi-table-scroll">
-    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" CssClass="grid-style"  ShowHeader ="true" UseAccessibleHeader="true" EmptyDataText="No KPI data available" OnRowCommand="GridView1_RowCommand"  AllowSorting="true" OnSorting="GridView1_Sorting">
+    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" CssClass="grid-style"  ShowHeader ="true" UseAccessibleHeader="true" EmptyDataText="No KPI data available" OnRowCommand="GridView1_RowCommand"  AllowSorting="true" OnSorting="GridView1_Sorting" DataKeyNames="KPI ID">
         <Columns>
             <asp:TemplateField>
                 <HeaderTemplate>
@@ -698,6 +814,11 @@ $(document).ready(function () {
                     <asp:Button ID="btnDelete" runat="server" Text="Delete"
                     CommandName="DeleteKPI" CommandArgument='<%# Container.DataItemIndex %>'
                     CssClass="btn-delete" OnClientClick="return confirm('Are you sure you want to delete this KPI?');" />
+
+                    <asp:Button ID="btnClone" runat="server" Text="Clone"  CommandName="CloneKPI"
+            CommandArgument='<%# Container.DataItemIndex %>' CssClass="btn-add" />
+
+
             </ItemTemplate>
             </asp:TemplateField>
             <asp:BoundField DataField="KPI or Standalone Metric" HeaderText="Metric" SortExpression="KPI or Standalone Metric" />

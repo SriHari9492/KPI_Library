@@ -250,6 +250,9 @@ Public Class _Default
         ElseIf e.CommandName = "DeleteKPI" Then
             Dim index As Integer = Convert.ToInt32(e.CommandArgument)
             DeleteKPI(index)
+        ElseIf e.CommandName = "CloneKPI" Then
+            Dim index As Integer = Convert.ToInt32(e.CommandArgument)
+            CloneKPI(index)
         End If
     End Sub
 
@@ -512,6 +515,67 @@ Public Class _Default
     ' >>>>>>>>>> START OF SORTING CODE <<<<<<<<<<
 
     ' >>>>>>>>>> END OF SORTING CODE <<<<<<<<<<
+
+
+    Private Sub CloneKPI(rowIndex As Integer)
+        Dim row As GridViewRow = GridView1.Rows(rowIndex)
+        Dim kpiId As String = row.Cells(3).Text.Trim()
+
+        hfIsEdit.Value = "true"
+        hfKPIID.Value = kpiId
+        lblFormTitle.Text = "Edit KPI"
+        txtKPIID.Text = kpiId
+        txtKPIID.Enabled = True
+
+        Using conn As New SqlConnection(ConfigurationManager.ConnectionStrings("MyDbConnection").ConnectionString)
+            conn.Open()
+            Using cmd As New SqlCommand("SELECT * FROM KPITable WHERE [KPI ID] = @KPI_ID", conn)
+                cmd.Parameters.AddWithValue("@KPI_ID", kpiId)
+                Using reader As SqlDataReader = cmd.ExecuteReader()
+                    If reader.Read() Then
+                        txtMetric.Text = reader("KPI or Standalone Metric").ToString()
+                        ' txtKPIName.Text = reader("KPI Name").ToString()
+                        txtShortDesc.Text = reader("KPI Short Description").ToString()
+                        txtImpact.Text = reader("KPI Impact").ToString()
+                        txtNumerator.Text = reader("Numerator Description").ToString()
+                        txtDenom.Text = reader("Denominator Description").ToString()
+                        txtUnit.Text = reader("Unit").ToString()
+                        txtDatasource.Text = reader("Datasource").ToString()
+                        'txtOrder.Text = reader("OrderWithinSecton").ToString()
+                        txtConstraints.Text = reader("Constraints").ToString()
+                        txtSubject_ME_Email.Text = reader("Subject_ME_Email").ToString()
+                        'ddlSubj_Obj.SelectedValue = reader("Subj_Obj").ToString()
+                        txtComment.Text = reader("Comment").ToString()
+                        chkActive.Checked = reader("Active").ToString().ToUpper() = "Y"
+                        chkFlagDivisinal.Checked = reader("FLAG_DIVISINAL").ToString().ToUpper() = "Y"
+                        chkFlagVendor.Checked = reader("FLAG_VENDOR").ToString().ToUpper() = "Y"
+                        chkFlagEngagement.Checked = reader("FLAG_ENGAGEMENTID").ToString().ToUpper() = "Y"
+                        chkFlagContract.Checked = reader("FLAG_CONTRACTID").ToString().ToUpper() = "Y"
+                        chkFlagCostcentre.Checked = reader("FLAG_COSTCENTRE").ToString().ToUpper() = "Y"
+                        chkFlagDeuballvl4.Checked = reader("FLAG_DEUBALvl4").ToString().ToUpper() = "Y"
+                        chkFlagHRID.Checked = reader("FLAG_HRID").ToString().ToUpper() = "Y"
+                        chkFlagRequest.Checked = reader("FLAG_REQUESTID").ToString().ToUpper() = "Y"
+
+                        Dim Subj_Obj As String = reader("Subj_Obj").ToString()
+                        If ddlSubj_Obj.Items.FindByValue(Subj_Obj) IsNot Nothing Then
+                            ddlSubj_Obj.SelectedValue = Subj_Obj
+                        Else
+                            ddlSubj_Obj.SelectedValue = "" ' Fallback
+                        End If
+                    End If
+                End Using
+            End Using
+        End Using
+
+
+        lblKPIError.Visible = False
+        lblOrderError.Text = ""
+        lblOrderError.Style("display") = "none"
+        lblDuplicateMetricKPIError.Visible = False
+
+        ' Show modal for user to enter new KPI ID, make edit if needed, and submit
+        ScriptManager.RegisterStartupScript(Me, Me.GetType(), "ShowModal", "showPopup(); hideKPIError();", True)
+    End Sub
 
     <WebMethod(EnableSession:=False)>
     <ScriptMethod(ResponseFormat:=ResponseFormat.Json)>
