@@ -23,33 +23,6 @@ Partial Public Class _Default
     Protected WithEvents lblFormTitle As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''txtMetric control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtMetric As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''txtKPIName control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtKPIName As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''lblDuplicateMetricKPIError control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblDuplicateMetricKPIError As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
     '''txtKPIID control.
     '''</summary>
     '''<remarks>
@@ -68,6 +41,69 @@ Partial Public Class _Default
     Protected WithEvents lblKPIError As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
+    '''rfvKPIID control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rfvKPIID As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
+    '''txtMetric control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtMetric As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''lblMetricError control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblMetricError As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''rfvMetric control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rfvMetric As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
+    '''txtKPIName control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtKPIName As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''lblKPINameError control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblKPINameError As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''rfvKPIName control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rfvKPIName As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''txtShortDesc control.
     '''</summary>
     '''<remarks>
@@ -75,6 +111,159 @@ Partial Public Class _Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtShortDesc As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''lblShortDescError control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblShortDescError As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''rfvShortDesc control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rfvShortDesc As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
+    '''txtImpact control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtImpact As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''lblImpactError control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblImpactError As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''rfvImpact control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rfvImpact As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
+    '''txtNumerator control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtNumerator As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''lblNumeratorError control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblNumeratorError As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''rfvNumer control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rfvNumer As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
+    '''txtDenom control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtDenom As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''lblDenomError control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblDenomError As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''rfvDenom control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rfvDenom As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
+    '''txtUnit control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtUnit As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''lblUnitError control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblUnitError As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''rfvunit control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rfvunit As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
+    '''txtDatasource control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtDatasource As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''lblDatasourceError control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblDatasourceError As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''rfvDataSource control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rfvDataSource As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''txtOrder control.
@@ -95,49 +284,13 @@ Partial Public Class _Default
     Protected WithEvents lblOrderError As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''txtImpact control.
+    '''rfvOrder control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtImpact As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''txtNumerator control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtNumerator As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''txtDenom control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtDenom As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''txtUnit control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtUnit As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''txtDatasource control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtDatasource As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents rfvOrder As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''txtConstraints control.
@@ -158,13 +311,22 @@ Partial Public Class _Default
     Protected WithEvents txtSubject_ME_Email As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''ddlSubj_Obj control.
+    '''ddlObjectiveSubjective control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents ddlSubj_Obj As Global.System.Web.UI.WebControls.DropDownList
+    Protected WithEvents ddlObjectiveSubjective As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''txtComments control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtComments As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''chkActive control.
@@ -246,15 +408,6 @@ Partial Public Class _Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents chkFlagRequest As Global.System.Web.UI.WebControls.CheckBox
-
-    '''<summary>
-    '''txtComment control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtComment As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''btnSubmit control.

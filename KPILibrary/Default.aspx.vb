@@ -52,6 +52,7 @@ Public Class _Default
 
     End Sub
 
+
     Protected Sub btnSubmit_Click(sender As Object, e As EventArgs) Handles btnSubmit.Click
         Dim originalKPIID As String = hfKPIID.Value.Trim()
         Dim orderValue As Integer = 0
@@ -70,13 +71,13 @@ Public Class _Default
         Dim orderText As String = CleanInput(txtOrder.Text)
         Dim Constraints As String = CleanInput(txtConstraints.Text)
         Dim Subject_ME_Email As String = CleanInput(txtSubject_ME_Email.Text)
-        Dim Subj_Obj As String = CleanInput(ddlSubj_Obj.SelectedValue)
-        Dim Comment As String = CleanInput(txtComment.Text)
+        Dim Subj_Obj As String = CleanInput(ddlObjectiveSubjective.SelectedValue)
+        Dim Comment As String = CleanInput(txtComments.Text)
 
         ' Reset all error labels
         lblKPIError.Visible = False
         lblOrderError.Visible = False
-        lblDuplicateMetricKPIError.Visible = False
+        lblMetricError.Visible = False
 
         ' Basic field validation
         If String.IsNullOrWhiteSpace(kpiID) OrElse String.IsNullOrWhiteSpace(metric) OrElse
@@ -96,26 +97,26 @@ Public Class _Default
             lblOrderError.Text = "Order must be between 1 and 999."
             lblOrderError.Visible = True
             valid = False
-        Else
-            ' Check for duplicate order within same metric
-            Using conn As New SqlConnection(ConfigurationManager.ConnectionStrings("MyDbConnection").ConnectionString)
-                conn.Open()
-                Using cmd As New SqlCommand("
-                    SELECT COUNT(*) FROM KPITable 
-                    WHERE [KPI or Standalone Metric] = @Metric 
-                      AND OrderWithinSecton = @Order 
-                      AND [KPI ID] <> @OriginalKPIID", conn)
-                    cmd.Parameters.AddWithValue("@Metric", metric)
-                    cmd.Parameters.AddWithValue("@Order", orderValue)
-                    cmd.Parameters.AddWithValue("@OriginalKPIID", originalKPIID)
-                    Dim count = Convert.ToInt32(cmd.ExecuteScalar())
-                    If count > 0 Then
-                        lblOrderError.Text = "No duplicate order allowed for same metric."
-                        lblOrderError.Visible = True
-                        valid = False
-                    End If
-                End Using
-            End Using
+            'Else
+            '    ' Check for duplicate order within same metric
+            '    Using conn As New SqlConnection(ConfigurationManager.ConnectionStrings("MyDbConnection").ConnectionString)
+            '        conn.Open()
+            '        Using cmd As New SqlCommand("
+            '            SELECT COUNT(*) FROM KPITable 
+            '            WHERE [KPI or Standalone Metric] = @Metric 
+            '              AND OrderWithinSecton = @Order 
+            '              AND [KPI ID] <> @OriginalKPIID", conn)
+            '            cmd.Parameters.AddWithValue("@Metric", metric)
+            '            cmd.Parameters.AddWithValue("@Order", orderValue)
+            '            cmd.Parameters.AddWithValue("@OriginalKPIID", originalKPIID)
+            '            Dim count = Convert.ToInt32(cmd.ExecuteScalar())
+            '            If count > 0 Then
+            '                lblOrderError.Text = "No duplicate order allowed for same metric."
+            '                lblOrderError.Visible = True
+            '                valid = False
+            '            End If
+            '        End Using
+            '    End Using
         End If
 
         ' KPI ID uniqueness validation (if new or modified)
@@ -138,24 +139,24 @@ Public Class _Default
         End If
 
         ' KPI Name uniqueness per metric
-        Using conn As New SqlConnection(ConfigurationManager.ConnectionStrings("MyDbConnection").ConnectionString)
-            conn.Open()
-            Using cmd As New SqlCommand("
-                SELECT COUNT(*) FROM KPITable 
-                WHERE [KPI or Standalone Metric] = @Metric 
-                  AND [KPI Name] = @KPIName 
-                  AND [KPI ID] <> @OriginalKPIID", conn)
-                cmd.Parameters.AddWithValue("@Metric", metric)
-                cmd.Parameters.AddWithValue("@KPIName", kpiName)
-                cmd.Parameters.AddWithValue("@OriginalKPIID", originalKPIID)
-                Dim count = Convert.ToInt32(cmd.ExecuteScalar())
-                If count > 0 Then
-                    lblDuplicateMetricKPIError.Text = "No duplicate names should be given to a single metric."
-                    lblDuplicateMetricKPIError.Visible = True
-                    valid = False
-                End If
-            End Using
-        End Using
+        'Using conn As New SqlConnection(ConfigurationManager.ConnectionStrings("MyDbConnection").ConnectionString)
+        '    conn.Open()
+        '    Using cmd As New SqlCommand("
+        '        SELECT COUNT(*) FROM KPITable 
+        '        WHERE [KPI or Standalone Metric] = @Metric 
+        '          AND [KPI Name] = @KPIName 
+        '          AND [KPI ID] <> @OriginalKPIID", conn)
+        '        cmd.Parameters.AddWithValue("@Metric", metric)
+        '        cmd.Parameters.AddWithValue("@KPIName", kpiName)
+        '        cmd.Parameters.AddWithValue("@OriginalKPIID", originalKPIID)
+        '        Dim count = Convert.ToInt32(cmd.ExecuteScalar())
+        '        If count > 0 Then
+        '            lblMetricError.Text = "No duplicate names should be given to a single metric."
+        '            lblMetricError.Visible = True 
+        '            valid = False
+        '        End If
+        '    End Using
+        'End Using
 
         ' If validation failed, show modal and return
         If Not valid Then
@@ -379,8 +380,8 @@ Public Class _Default
                         txtOrder.Text = reader("OrderWithinSecton").ToString()
                         txtConstraints.Text = reader("Constraints").ToString()
                         txtSubject_ME_Email.Text = reader("Subject_ME_Email").ToString()
-                        'ddlSubj_Obj.SelectedValue = reader("Subj_Obj").ToString()
-                        txtComment.Text = reader("Comment").ToString()
+                        ddlObjectiveSubjective.SelectedValue = reader("Subj_Obj").ToString()
+                        txtComments.Text = reader("Comment").ToString()
                         chkActive.Checked = reader("Active").ToString().ToUpper() = "Y"
                         chkFlagDivisinal.Checked = reader("FLAG_DIVISINAL").ToString().ToUpper() = "Y"
                         chkFlagVendor.Checked = reader("FLAG_VENDOR").ToString().ToUpper() = "Y"
@@ -392,10 +393,10 @@ Public Class _Default
                         chkFlagRequest.Checked = reader("FLAG_REQUESTID").ToString().ToUpper() = "Y"
 
                         Dim Subj_Obj As String = reader("Subj_Obj").ToString()
-                        If ddlSubj_Obj.Items.FindByValue(Subj_Obj) IsNot Nothing Then
-                            ddlSubj_Obj.SelectedValue = Subj_Obj
+                        If ddlObjectiveSubjective.Items.FindByValue(Subj_Obj) IsNot Nothing Then
+                            ddlObjectiveSubjective.SelectedValue = Subj_Obj
                         Else
-                            ddlSubj_Obj.SelectedValue = "" ' Fallback
+                            ddlObjectiveSubjective.SelectedValue = "" ' Fallback
                         End If
                     End If
                 End Using
@@ -405,7 +406,7 @@ Public Class _Default
         ' Hide error labels when loading edit data
         lblKPIError.Visible = False
         lblOrderError.Visible = False
-        lblDuplicateMetricKPIError.Visible = False
+        lblMetricError.Visible = False
 
         ScriptManager.RegisterStartupScript(Me, Me.GetType(), "ShowModal_" & Guid.NewGuid().ToString(), "showPopup(); hideKPIError();", True)
     End Sub
@@ -426,8 +427,8 @@ Public Class _Default
         txtOrder.Text = ""
         txtConstraints.Text = ""
         txtSubject_ME_Email.Text = ""
-        ddlSubj_Obj.SelectedIndex = "0"
-        txtComment.Text = " "
+        ddlObjectiveSubjective.SelectedIndex = "0"
+        txtComments.Text = " "
 
         txtKPIID.Enabled = True
 
@@ -446,7 +447,7 @@ Public Class _Default
         ' Hide all error labels
         lblKPIError.Visible = False
         lblOrderError.Visible = False
-        lblDuplicateMetricKPIError.Visible = False
+        lblMetricError.Visible = False
     End Sub
 
     Protected Sub btnAddKPI_Click(sender As Object, e As EventArgs)
@@ -544,8 +545,8 @@ Public Class _Default
                         'txtOrder.Text = reader("OrderWithinSecton").ToString()
                         txtConstraints.Text = reader("Constraints").ToString()
                         txtSubject_ME_Email.Text = reader("Subject_ME_Email").ToString()
-                        'ddlSubj_Obj.SelectedValue = reader("Subj_Obj").ToString()
-                        txtComment.Text = reader("Comment").ToString()
+                        ddlObjectiveSubjective.SelectedValue = reader("Subj_Obj").ToString()
+                        txtComments.Text = reader("Comment").ToString()
                         chkActive.Checked = reader("Active").ToString().ToUpper() = "Y"
                         chkFlagDivisinal.Checked = reader("FLAG_DIVISINAL").ToString().ToUpper() = "Y"
                         chkFlagVendor.Checked = reader("FLAG_VENDOR").ToString().ToUpper() = "Y"
@@ -557,10 +558,10 @@ Public Class _Default
                         chkFlagRequest.Checked = reader("FLAG_REQUESTID").ToString().ToUpper() = "Y"
 
                         Dim Subj_Obj As String = reader("Subj_Obj").ToString()
-                        If ddlSubj_Obj.Items.FindByValue(Subj_Obj) IsNot Nothing Then
-                            ddlSubj_Obj.SelectedValue = Subj_Obj
+                        If ddlObjectiveSubjective.Items.FindByValue(Subj_Obj) IsNot Nothing Then
+                            ddlObjectiveSubjective.SelectedValue = Subj_Obj
                         Else
-                            ddlSubj_Obj.SelectedValue = "" ' Fallback
+                            ddlObjectiveSubjective.SelectedValue = "" ' Fallback
                         End If
                     End If
                 End Using
@@ -571,7 +572,7 @@ Public Class _Default
         lblKPIError.Visible = False
         lblOrderError.Text = ""
         lblOrderError.Style("display") = "none"
-        lblDuplicateMetricKPIError.Visible = False
+        lblMetricError.Visible = False
 
         ' Show modal for user to enter new KPI ID, make edit if needed, and submit
         ScriptManager.RegisterStartupScript(Me, Me.GetType(), "ShowModal", "showPopup(); hideKPIError();", True)

@@ -46,33 +46,6 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:KPILibrary._Default._txtMetric">
-<summary>
-txtMetric control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:KPILibrary._Default._txtKPIName">
-<summary>
-txtKPIName control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:KPILibrary._Default._lblDuplicateMetricKPIError">
-<summary>
-lblDuplicateMetricKPIError control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
 <member name="F:KPILibrary._Default._txtKPIID">
 <summary>
 txtKPIID control.
@@ -91,9 +64,225 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:KPILibrary._Default._rfvKPIID">
+<summary>
+rfvKPIID control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:KPILibrary._Default._txtMetric">
+<summary>
+txtMetric control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:KPILibrary._Default._lblMetricError">
+<summary>
+lblMetricError control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:KPILibrary._Default._rfvMetric">
+<summary>
+rfvMetric control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:KPILibrary._Default._txtKPIName">
+<summary>
+txtKPIName control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:KPILibrary._Default._lblKPINameError">
+<summary>
+lblKPINameError control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:KPILibrary._Default._rfvKPIName">
+<summary>
+rfvKPIName control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:KPILibrary._Default._txtShortDesc">
 <summary>
 txtShortDesc control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:KPILibrary._Default._lblShortDescError">
+<summary>
+lblShortDescError control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:KPILibrary._Default._rfvShortDesc">
+<summary>
+rfvShortDesc control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:KPILibrary._Default._txtImpact">
+<summary>
+txtImpact control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:KPILibrary._Default._lblImpactError">
+<summary>
+lblImpactError control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:KPILibrary._Default._rfvImpact">
+<summary>
+rfvImpact control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:KPILibrary._Default._txtNumerator">
+<summary>
+txtNumerator control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:KPILibrary._Default._lblNumeratorError">
+<summary>
+lblNumeratorError control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:KPILibrary._Default._rfvNumer">
+<summary>
+rfvNumer control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:KPILibrary._Default._txtDenom">
+<summary>
+txtDenom control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:KPILibrary._Default._lblDenomError">
+<summary>
+lblDenomError control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:KPILibrary._Default._rfvDenom">
+<summary>
+rfvDenom control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:KPILibrary._Default._txtUnit">
+<summary>
+txtUnit control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:KPILibrary._Default._lblUnitError">
+<summary>
+lblUnitError control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:KPILibrary._Default._rfvunit">
+<summary>
+rfvunit control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:KPILibrary._Default._txtDatasource">
+<summary>
+txtDatasource control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:KPILibrary._Default._lblDatasourceError">
+<summary>
+lblDatasourceError control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:KPILibrary._Default._rfvDataSource">
+<summary>
+rfvDataSource control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -118,45 +307,9 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:KPILibrary._Default._txtImpact">
+<member name="F:KPILibrary._Default._rfvOrder">
 <summary>
-txtImpact control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:KPILibrary._Default._txtNumerator">
-<summary>
-txtNumerator control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:KPILibrary._Default._txtDenom">
-<summary>
-txtDenom control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:KPILibrary._Default._txtUnit">
-<summary>
-txtUnit control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:KPILibrary._Default._txtDatasource">
-<summary>
-txtDatasource control.
+rfvOrder control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -181,9 +334,18 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:KPILibrary._Default._ddlSubj_Obj">
+<member name="F:KPILibrary._Default._ddlObjectiveSubjective">
 <summary>
-ddlSubj_Obj control.
+ddlObjectiveSubjective control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:KPILibrary._Default._txtComments">
+<summary>
+txtComments control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -265,15 +427,6 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:KPILibrary._Default._chkFlagRequest">
 <summary>
 chkFlagRequest control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:KPILibrary._Default._txtComment">
-<summary>
-txtComment control.
 </summary>
 <remarks>
 Auto-generated field.

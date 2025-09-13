@@ -171,6 +171,34 @@
       display: none;
     }
 
+     /* validation css*/
+     .form-input {
+    width: 500px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+/*.form-input:focus {
+    border-color: #2196F3;
+    outline: none;
+}*/
+
+.form-input.invalid {
+    border-color: #e74c3c;
+    box-shadow: 0 0 0 2px rgba(231, 76, 54, 0.1);
+}
+
+.error-msg {
+    color: #e74c3c;
+    font-size: 12px;
+    margin-top: 4px;
+    display: block;
+}
+
+
     </style>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -320,7 +348,7 @@
 
 
             document.getElementById("<%= lblOrderError.ClientID %>").style.display = "none";
-            document.getElementById("<%= lblDuplicateMetricKPIError.ClientID %>").style.display = "none";
+            document.getElementById("<%= lblMetricError.ClientID %>").style.display = "none";
             document.getElementById("<%= lblKPIError.ClientID %>").style.display = "none";
         }
 
@@ -646,19 +674,272 @@ $(document).ready(function () {
 
         function focusKPIInput() {
             var el = document.getElementById('<%=txtKPIID.ClientID%>');
-       if (el) el.focus();
-   }
+            if (el) el.focus();
+        }
 
+
+
+
+        // Call this from btnSubmit_Click via RegisterStartupScript
+        // Example: showError("txtKPIID", "KPI ID is required");
+        function showError(inputId, message) {
+            var input = document.getElementById(inputId);
+            if (!input) return;
+
+            // Add invalid class
+            input.classList.add('field-invalid');
+
+            // Show error message
+            var errorLabel = document.getElementById(inputId + 'Error');
+            if (errorLabel) {
+                errorLabel.style.display = 'block';
+            }
+
+            // Focus and scroll into view
+            input.focus();
+            input.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        // Call this from btnSubmit_Click via RegisterStartupScript
+        // Example: showError("txtKPIID", "KPI ID is required");
+
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const inputs = ['txtKPIID', 'txtMetric', 'txtKPIName', 'txtOrder'];
+            inputs.forEach(id => {
+                const input = document.getElementById(id);
+                if (!input) return;
+
+                input.addEventListener('blur', function () {
+                    if (this.value.trim() === '') {
+                        showError(this.id, this.name + ' is required');
+                    } else {
+                        this.classList.remove('invalid');
+                        document.getElementById(this.id + 'Error').style.display = 'none';
+                    }
+                });
+            });
+        });
+
+
+
+        function validateField(input) {
+            var value = input.value.trim();
+            var labelId = input.id + 'Error';
+            var label = document.getElementById(labelId);
+
+            // If field is empty, show error
+            if (value === '') {
+                if (label) {
+                    label.style.display = 'block';
+                    input.classList.add('field-invalid');
+                }
+            } else {
+                // If field has value, hide error
+                if (label) {
+                    label.style.display = 'none';
+                    input.classList.remove('field-invalid');
+                }
+            }
+        }
+
+
+        document.getElementById('kpiForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const form = e.target;
+            const errors = [];
+
+            // Validate required fields — NO condition on mode!
+            if (!form.name.value.trim()) {
+                errors.push("Name is required");
+            }
+            if (!form.impact.value.trim()) {
+                errors.push("Impact is required");
+            }
+
+            const errorContainer = document.getElementById('error-messages');
+            if (errors.length > 0) {
+                errorContainer.innerHTML = errors.join('<br>');
+            } else {
+                errorContainer.innerHTML = '';
+                alert("KPI saved successfully!");
+                // Save to backend
+            }
+        });
+
+
+        const fields = ['name', 'impact'];
+        fields.forEach(fieldName => {
+            const field = document.querySelector(`[name="${fieldName}"]`);
+            field.addEventListener('input', () => {
+                const errorContainer = document.getElementById('error-messages');
+                if (errorContainer.innerHTML.includes(fieldName)) {
+                    errorContainer.innerHTML = '';
+                }
+            });
+        });
     </script>
+
+<div id="error-messages" style="color: red; margin-top: 10px;"></div>
    
     <div id="kpiModal" class="modal">
 
         <span class="close-btn" onclick="hidePopup()">×</span>
         <h3><asp:Label ID="lblFormTitle" runat="server" Text="Add KPI" /></h3>
         <table>
-            <tr><td>Metric:</td><td><asp:TextBox ID="txtMetric" runat="server" /></td></tr>
+
+
+
+
+            <tr>
+            <td>KPI ID:</td>
+            <td>
+             <div class="form-group">
+            <label for="txtKPIID"></label>
+  
+                <asp:TextBox ID="txtKPIID" runat="server" CssClass="form-input" onblur="validateField(this)" />
+                <asp:Label ID="lblKPIError" runat="server" CssClass="error-msg" Text="KPI ID is required" ForeColor="Red" Visible="false" />
+                 <asp:RequiredFieldValidator ID="rfvKPIID" runat="server" ControlToValidate="txtKPIID" ErrorMessage="KPI ID is required" ForeColor="Red" Display="Dynamic" ValidationGroup="AddEditGroup" />
+
+                </td>
+        </tr>
+
+        <!-- Metric -->
+        <tr>
+            <td>Metric:</td>
+            <td>
+                        <div class="form-group">
+            <label for="txtMetric"></label>
+  
+                <asp:TextBox ID="txtMetric" runat="server" CssClass="form-input" onblur="validateField(this)" />
+                <asp:Label ID="lblMetricError" runat="server" CssClass="error-msg" Text="Metric is required" ForeColor="Red" Visible="false" />
+            <asp:RequiredFieldValidator ID="rfvMetric" runat="server" ControlToValidate="txtMetric" ErrorMessage="KPI Metric is required" ForeColor="Red" Display="Dynamic" ValidationGroup="AddEditGroup"  />
+           
+                </td>
+        </tr>
+
+        <!-- Name -->
+        <tr>
+            <td>Name:</td>
+            <td>
+                <asp:TextBox ID="txtKPIName" runat="server" CssClass="form-input" onblur="validateField(this)" />
+                <asp:Label ID="lblKPINameError" runat="server" CssClass="error-msg" Text="KPI Name is required" ForeColor="Red" Visible="false" />
+            <asp:RequiredFieldValidator ID="rfvKPIName" runat="server" ControlToValidate="txtKPIName" ErrorMessage="KPI Name is required" ForeColor="Red" Display="Dynamic" ValidationGroup="AddEditGroup" />
+
+            </td>
+        </tr>
+
+        <!-- Short Desc -->
+        <tr>
+            <td>Short Desc:</td>
+            <td>
+                <asp:TextBox ID="txtShortDesc" runat="server" TextMode="MultiLine" Rows="3" CssClass="form-input" onblur="validateField(this)" />
+                <asp:Label ID="lblShortDescError" runat="server" CssClass="error-msg" Text="Short Description is required" ForeColor="Red" Visible="false" />
+               <asp:RequiredFieldValidator ID="rfvShortDesc" runat="server" ControlToValidate="txtShortDesc" ErrorMessage="Short Desc is required" ForeColor="Red" Display="Dynamic" ValidationGroup="AddEditGroup"  />
+
+                </td>
+        </tr>
+
+        <!-- Impact -->
+        <tr>
+            <td>Impact:</td>
+            <td>
+                <asp:TextBox ID="txtImpact" runat="server" TextMode="MultiLine" Rows="3" CssClass="form-input" onblur="validateField(this)" />
+                <asp:Label ID="lblImpactError" runat="server" CssClass="error-msg" Text="Impact is required" ForeColor="Red" Visible="false" />
+            <asp:RequiredFieldValidator ID="rfvImpact" runat="server" ControlToValidate="txtImpact" ErrorMessage="KPI Impact is required" ForeColor="Red" Display="Dynamic" ValidationGroup="AddEditGroup"  />
+
+                </td>
+        </tr>
+
+        <!-- Numerator -->
+        <tr>
+            <td>Numerator:</td>
+            <td>
+                <asp:TextBox ID="txtNumerator" runat="server" TextMode="MultiLine" Rows="3" CssClass="form-input" onblur="validateField(this)" />
+                <asp:Label ID="lblNumeratorError" runat="server" CssClass="error-msg" Text="Numerator is required" ForeColor="Red" Visible="false" />
+             <asp:RequiredFieldValidator ID="rfvNumer" runat="server" ControlToValidate="txtNumerator" ErrorMessage="KPI Numerator is required" ForeColor="Red" Display="Dynamic" ValidationGroup="AddEditGroup" />
+             
+            </td>
+        </tr>
+
+        <!-- Denominator -->
+        <tr>
+            <td>Denominator:</td>
+            <td>
+                <asp:TextBox ID="txtDenom" runat="server" TextMode="MultiLine" Rows="3" CssClass="form-input" onblur="validateField(this)" />
+                <asp:Label ID="lblDenomError" runat="server" CssClass="error-msg" Text="Denominator is required" ForeColor="Red" Visible="false" />
+           <asp:RequiredFieldValidator ID="rfvDenom" runat="server" ControlToValidate="txtDenom" ErrorMessage="KPI Denom is required" ForeColor="Red" Display="Dynamic" ValidationGroup="AddEditGroup" />
+
+                </td>
+        </tr>
+
+        <!-- Unit -->
+        <tr>
+            <td>Unit:</td>
+            <td>
+                <asp:TextBox ID="txtUnit" runat="server" CssClass="form-input" onblur="validateField(this)" />
+                <asp:Label ID="lblUnitError" runat="server" CssClass="error-msg" Text="Unit is required" ForeColor="Red" Visible="false" />
+            <asp:RequiredFieldValidator ID="rfvunit" runat="server" ControlToValidate="txtUnit" ErrorMessage="KPI Unit is required" ForeColor="Red" Display="Dynamic" ValidationGroup="AddEditGroup"  />
+
+            </td>
+        </tr>
+
+        <!-- Datasource -->
+        <tr>
+            <td>Datasource:</td>
+            <td>
+                <asp:TextBox ID="txtDatasource" runat="server" CssClass="form-input" onblur="validateField(this)" />
+                <asp:Label ID="lblDatasourceError" runat="server" CssClass="error-msg" Text="Datasource is required" ForeColor="Red" Visible="false" />
+             <asp:RequiredFieldValidator ID="rfvDataSource" runat="server" ControlToValidate="txtDatasource" ErrorMessage="KPI Datasource is required" ForeColor="Red" Display="Dynamic" ValidationGroup="AddEditGroup" />
+
+            </td>
+        </tr>
+
+        <!-- Order -->
+        <tr>
+            <td>Order:</td>
+            <td>
+                <asp:TextBox ID="txtOrder" runat="server" CssClass="form-input" onblur="validateField(this)" />
+                <asp:Label ID="lblOrderError" runat="server" CssClass="error-msg" Text="Order is required" ForeColor="Red" Visible="false" />
+            <asp:RequiredFieldValidator ID="rfvOrder" runat="server" ControlToValidate="txtDatasource" ErrorMessage="KPI Datasource is required" ForeColor="Red" Display="Dynamic" ValidationGroup="AddEditGroup" />
+
+            </td>
+        </tr>
+
+        <!-- Other fields without validation -->
+       <%-- <tr><td>KPI_Section:</td><td><asp:TextBox ID="txtSection" runat="server" /></td></tr>
+     --%>   <tr><td>Constraints:</td><td><asp:TextBox ID="txtConstraints" runat="server" TextMode="MultiLine" Rows="3" /></td></tr>
+        <tr><td>Subject_ME_Email:</td><td><asp:TextBox ID="txtSubject_ME_Email" runat="server" TextMode="MultiLine" Rows="3" /></td></tr>
+        <tr>
+            <td>Objective/Subjective:</td>
+            <td>
+                <asp:DropDownList ID="ddlObjectiveSubjective" runat="server">
+                    <asp:ListItem Value="" Text="-- Select --" Selected="True"></asp:ListItem>
+                    <asp:ListItem Value="Objective" Text="Objective"></asp:ListItem>
+                    <asp:ListItem Value="Subjective" Text="Subjective"></asp:ListItem>
+                </asp:DropDownList>
+            </td>
+        </tr>
+        <tr>
+            <td>Comments:</td>
+            <td><asp:TextBox ID="txtComments" runat="server" TextMode="MultiLine" Rows="3" /></td>
+        </tr>
+
+            <!-- Flags -->
+        <tr><td>Active:</td><td><label class="toggle-switch"><asp:CheckBox ID="chkActive" runat="server" /><span class="slider"></span></label></td></tr>
+        <tr><td>FLAG_DIVISINAL:</td><td><label class="toggle-switch"><asp:CheckBox ID="chkFlagDivisinal" runat="server" /><span class="slider"></span></label></td></tr>
+        <tr><td>FLAG_VENDOR:</td><td><label class="toggle-switch"><asp:CheckBox ID="chkFlagVendor" runat="server" /><span class="slider"></span></label></td></tr>
+        <tr><td>FLAG_ENGAGEMENTID:</td><td><label class="toggle-switch"><asp:CheckBox ID="chkFlagEngagement" runat="server" /><span class="slider"></span></label></td></tr>
+        <tr><td>FLAG_CONTRACTID:</td><td><label class="toggle-switch"><asp:CheckBox ID="chkFlagContract" runat="server" /><span class="slider"></span></label></td></tr>
+        <tr><td>FLAG_COSTCENTRE:</td><td><label class="toggle-switch"><asp:CheckBox ID="chkFlagCostcentre" runat="server" /><span class="slider"></span></label></td></tr>
+        <tr><td>FLAG_DEUBALvl4:</td><td><label class="toggle-switch"><asp:CheckBox ID="chkFlagDeuballvl4" runat="server" /><span class="slider"></span></label></td></tr>
+        <tr><td>FLAG_HRID:</td><td><label class="toggle-switch"><asp:CheckBox ID="chkFlagHRID" runat="server" /><span class="slider"></span></label></td></tr>
+        <tr><td>FLAG_REQUESTID:</td><td><label class="toggle-switch"><asp:CheckBox ID="chkFlagRequest" runat="server" /><span class="slider"></span></label></td></tr>
+
+<%--            <tr><td>Metric:</td><td><asp:TextBox ID="txtMetric" runat="server" /></td></tr>
             <tr><td>Name:</td><td><asp:TextBox ID="txtKPIName" runat="server" /><asp:Label ID="lblDuplicateMetricKPIError" runat="server"   ForeColor="Red" Style="color: red;font-size: 12px; margin-top:5px;display:block;"  /></td></tr>
-            <tr><td>KPI ID:</td><td><asp:TextBox ID="txtKPIID" runat="server" /><asp:Label ID="lblKPIError" runat="server" CssClass="error-span" Text="KPI ID already exists" ForeColor="Red" Visible="false" /></td></tr>
+            <tr><td>KPI ID:</td><td><asp:TextBox ID="txtKPIID" runat="server" /><asp:Label ID="lblKPIError" runat="server" CssClass="error-msg" Text="KPI ID already exists" ForeColor="Red" Visible="false" /></td></tr>
             <tr><td>Short Desc:</td><td><asp:TextBox ID="txtShortDesc" runat="server" TextMode="MultiLine" Rows="3" /></td></tr>
            <tr><td>Order:</td><td><asp:TextBox ID="txtOrder" runat="server" /><asp:Label ID="lblOrderError" runat="server"   Text="Please add numbers between 1–999" ForeColor="Red" Style="color: red;font-size: 12px; margin-top:5px;display:block;"  /></td></tr>
            
@@ -685,10 +966,10 @@ $(document).ready(function () {
             <tr><td>FLAG_DEUBALvl4:</td><td><label class="toggle-switch"><asp:CheckBox ID="chkFlagDeuballvl4" runat="server" /><span class="slider"></span></label></td></tr>
             <tr><td>FLAG_HRID:</td><td><label class="toggle-switch"><asp:CheckBox ID="chkFlagHRID" runat="server" /><span class="slider"></span></label></td></tr>
             <tr><td>FLAG_REQUESTID:</td><td><label class="toggle-switch"><asp:CheckBox ID="chkFlagRequest" runat="server" /><span class="slider"></span></label></td></tr>
-            <tr><td>Comment:</td><td><asp:TextBox ID="txtComment" runat="server" TextMode="MultiLine" Rows="5" Width="520px" /></td></tr>
+            <tr><td>Comment:</td><td><asp:TextBox ID="txtComment" runat="server" TextMode="MultiLine" Rows="5" Width="520px" /></td></tr>--%>
      
              <!-- Optional: Add a character counter or validation if needed -->
-             <tr><td colspan="2" style="text-align:center;"><asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClick="btnSubmit_Click" CssClass="btn-add" /></td></tr>
+             <tr><td colspan="2" style="text-align:center;"><asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClick="btnSubmit_Click" CssClass="btn-add" ValidationGroup="AddEditGroup"/></td></tr>
             
         </table>
         <asp:HiddenField ID="hfIsEdit" runat="server" />
@@ -807,10 +1088,10 @@ $(document).ready(function () {
         <Columns>
             <asp:TemplateField>
                 <HeaderTemplate>
-                    <asp:Button ID="btnAddKPI" runat="server" Text="+ Add KPI" CssClass="btn-add" OnClick="btnAddKPI_Click" />
+                    <asp:Button ID="btnAddKPI" runat="server" Text="+ Add KPI" CssClass="btn-add" OnClick="btnAddKPI_Click" CausesValidation="False"/>
                 </HeaderTemplate>
                 <ItemTemplate>
-                    <asp:Button ID="btnEdit" runat="server" Text="Edit" CommandName="EditKPI" CommandArgument='<%# Container.DataItemIndex %>' CssClass="btn-edit" />
+                    <asp:Button ID="btnEdit" runat="server" Text="Edit" CommandName="EditKPI" CommandArgument='<%# Container.DataItemIndex %>' CssClass="btn-edit" CausesValidation="False"/>
                     <asp:Button ID="btnDelete" runat="server" Text="Delete"
                     CommandName="DeleteKPI" CommandArgument='<%# Container.DataItemIndex %>'
                     CssClass="btn-delete" OnClientClick="return confirm('Are you sure you want to delete this KPI?');" />
