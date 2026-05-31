@@ -11,41 +11,50 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class FReport
+Partial Public Class MultiSelectFilter
 
     '''<summary>
-    '''form2 control.
+    '''lblTitle control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents form2 As Global.System.Web.UI.HtmlControls.HtmlForm
+    Protected WithEvents lblTitle As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''FilterBoxControl control.
+    '''txtSelected control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents FilterBoxControl As Global.KPILibrary.FilterBoxControl
+    Protected WithEvents txtSelected As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''pnlReport control.
+    '''btnToggle control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents pnlReport As Global.System.Web.UI.WebControls.Panel
+    Protected WithEvents btnToggle As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
-    '''litMessage control.
+    '''pnlList control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents litMessage As Global.System.Web.UI.WebControls.Literal
+    Protected WithEvents pnlList As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''CheckBoxList control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents CheckBoxList As Global.System.Web.UI.WebControls.CheckBoxList
 End Class
