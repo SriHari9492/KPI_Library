@@ -145,8 +145,12 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Controls\FilterBoxControl.ascx" />
+    <Content Include="Controls\MultiSelectFilter.ascx" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
+    <Content Include="FReport.aspx" />
+    <Content Include="GetQuarterDates.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -227,12 +231,40 @@
       <DependentUpon>Contact.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="Controls\FilterBoxControl.ascx.designer.vb">
+      <DependentUpon>FilterBoxControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FilterBoxControl.ascx.vb">
+      <DependentUpon>FilterBoxControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\MultiSelectFilter.ascx.designer.vb">
+      <DependentUpon>MultiSelectFilter.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MultiSelectFilter.ascx.vb">
+      <DependentUpon>MultiSelectFilter.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Default.aspx.vb">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Default.aspx.designer.vb">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FReport.aspx.designer.vb">
+      <DependentUpon>FReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FReport.aspx.vb">
+      <DependentUpon>FReport.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="GetQuarterDates.aspx.designer.vb">
+      <DependentUpon>GetQuarterDates.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GetQuarterDates.aspx.vb">
+      <DependentUpon>GetQuarterDates.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Global.asax.vb">
       <DependentUpon>Global.asax</DependentUpon>
