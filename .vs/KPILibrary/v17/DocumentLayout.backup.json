@@ -3,16 +3,48 @@
   "WorkspaceRootPath": "C:\\Users\\user\\source\\repos\\KPILibrary\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{CD8E53D2-B177-494B-AE08-1CEEF98E43D7}|KPILibrary\\KPILibrary.vbproj|c:\\users\\user\\source\\repos\\kpilibrary\\kpilibrary\\default.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{CD8E53D2-B177-494B-AE08-1CEEF98E43D7}|KPILibrary\\KPILibrary.vbproj|solutionrelative:kpilibrary\\default.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+      "AbsoluteMoniker": "D:0:0:{CD8E53D2-B177-494B-AE08-1CEEF98E43D7}|KPILibrary\\KPILibrary.vbproj|C:\\Users\\user\\source\\repos\\KPILibrary\\KPILibrary\\Web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{CD8E53D2-B177-494B-AE08-1CEEF98E43D7}|KPILibrary\\KPILibrary.vbproj|solutionrelative:KPILibrary\\Web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CD8E53D2-B177-494B-AE08-1CEEF98E43D7}|KPILibrary\\KPILibrary.vbproj|C:\\Users\\user\\source\\repos\\KPILibrary\\kpilibrary\\default.aspx.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "AbsoluteMoniker": "D:0:0:{CD8E53D2-B177-494B-AE08-1CEEF98E43D7}|KPILibrary\\KPILibrary.vbproj|c:\\users\\user\\source\\repos\\kpilibrary\\kpilibrary\\getquarterdates.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{CD8E53D2-B177-494B-AE08-1CEEF98E43D7}|KPILibrary\\KPILibrary.vbproj|solutionrelative:kpilibrary\\getquarterdates.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CD8E53D2-B177-494B-AE08-1CEEF98E43D7}|KPILibrary\\KPILibrary.vbproj|c:\\users\\user\\source\\repos\\kpilibrary\\kpilibrary\\getquarterdates.aspx.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{CD8E53D2-B177-494B-AE08-1CEEF98E43D7}|KPILibrary\\KPILibrary.vbproj|solutionrelative:kpilibrary\\getquarterdates.aspx.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CD8E53D2-B177-494B-AE08-1CEEF98E43D7}|KPILibrary\\KPILibrary.vbproj|c:\\users\\user\\source\\repos\\kpilibrary\\kpilibrary\\controls\\filterboxcontrol.ascx||{F390D63C-F7D8-4E74-AA04-57C1ECF53D4D}",
+      "RelativeMoniker": "D:0:0:{CD8E53D2-B177-494B-AE08-1CEEF98E43D7}|KPILibrary\\KPILibrary.vbproj|solutionrelative:kpilibrary\\controls\\filterboxcontrol.ascx||{F390D63C-F7D8-4E74-AA04-57C1ECF53D4D}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CD8E53D2-B177-494B-AE08-1CEEF98E43D7}|KPILibrary\\KPILibrary.vbproj|c:\\users\\user\\source\\repos\\kpilibrary\\kpilibrary\\controls\\filterboxcontrol.ascx.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{CD8E53D2-B177-494B-AE08-1CEEF98E43D7}|KPILibrary\\KPILibrary.vbproj|solutionrelative:kpilibrary\\controls\\filterboxcontrol.ascx.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CD8E53D2-B177-494B-AE08-1CEEF98E43D7}|KPILibrary\\KPILibrary.vbproj|c:\\users\\user\\source\\repos\\kpilibrary\\kpilibrary\\controls\\multiselectfilter.ascx||{F390D63C-F7D8-4E74-AA04-57C1ECF53D4D}",
+      "RelativeMoniker": "D:0:0:{CD8E53D2-B177-494B-AE08-1CEEF98E43D7}|KPILibrary\\KPILibrary.vbproj|solutionrelative:kpilibrary\\controls\\multiselectfilter.ascx||{F390D63C-F7D8-4E74-AA04-57C1ECF53D4D}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CD8E53D2-B177-494B-AE08-1CEEF98E43D7}|KPILibrary\\KPILibrary.vbproj|c:\\users\\user\\source\\repos\\kpilibrary\\kpilibrary\\controls\\multiselectfilter.ascx.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{CD8E53D2-B177-494B-AE08-1CEEF98E43D7}|KPILibrary\\KPILibrary.vbproj|solutionrelative:kpilibrary\\controls\\multiselectfilter.ascx.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CD8E53D2-B177-494B-AE08-1CEEF98E43D7}|KPILibrary\\KPILibrary.vbproj|c:\\users\\user\\source\\repos\\kpilibrary\\kpilibrary\\freport.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{CD8E53D2-B177-494B-AE08-1CEEF98E43D7}|KPILibrary\\KPILibrary.vbproj|solutionrelative:kpilibrary\\freport.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CD8E53D2-B177-494B-AE08-1CEEF98E43D7}|KPILibrary\\KPILibrary.vbproj|c:\\users\\user\\source\\repos\\kpilibrary\\kpilibrary\\freport.aspx.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{CD8E53D2-B177-494B-AE08-1CEEF98E43D7}|KPILibrary\\KPILibrary.vbproj|solutionrelative:kpilibrary\\freport.aspx.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CD8E53D2-B177-494B-AE08-1CEEF98E43D7}|KPILibrary\\KPILibrary.vbproj|c:\\users\\user\\source\\repos\\kpilibrary\\kpilibrary\\default.aspx.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
       "RelativeMoniker": "D:0:0:{CD8E53D2-B177-494B-AE08-1CEEF98E43D7}|KPILibrary\\KPILibrary.vbproj|solutionrelative:kpilibrary\\default.aspx.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CD8E53D2-B177-494B-AE08-1CEEF98E43D7}|KPILibrary\\KPILibrary.vbproj|C:\\Users\\user\\source\\repos\\KPILibrary\\kpilibrary\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{CD8E53D2-B177-494B-AE08-1CEEF98E43D7}|KPILibrary\\KPILibrary.vbproj|solutionrelative:kpilibrary\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+      "AbsoluteMoniker": "D:0:0:{CD8E53D2-B177-494B-AE08-1CEEF98E43D7}|KPILibrary\\KPILibrary.vbproj|C:\\Users\\user\\source\\repos\\KPILibrary\\KPILibrary\\Default.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{CD8E53D2-B177-494B-AE08-1CEEF98E43D7}|KPILibrary\\KPILibrary.vbproj|solutionrelative:KPILibrary\\Default.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,7 +54,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -30,32 +62,137 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Default.aspx.vb",
-              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\KPILibrary\\KPILibrary\\Default.aspx.vb",
-              "RelativeDocumentMoniker": "KPILibrary\\Default.aspx.vb",
-              "ToolTip": "C:\\Users\\user\\source\\repos\\KPILibrary\\KPILibrary\\Default.aspx.vb",
-              "RelativeToolTip": "KPILibrary\\Default.aspx.vb",
-              "ViewState": "AgIAAE0CAAAAAAAAAAAqwJAAAAAvAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
-              "WhenOpened": "2025-10-03T07:17:27.211Z"
+              "DocumentIndex": 7,
+              "Title": "FReport.aspx",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\KPILibrary\\KPILibrary\\FReport.aspx",
+              "RelativeDocumentMoniker": "KPILibrary\\FReport.aspx",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\KPILibrary\\KPILibrary\\FReport.aspx",
+              "RelativeToolTip": "KPILibrary\\FReport.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-12-30T08:30:33.548Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
+              "Title": "MultiSelectFilter.ascx.vb",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\KPILibrary\\KPILibrary\\Controls\\MultiSelectFilter.ascx.vb",
+              "RelativeDocumentMoniker": "KPILibrary\\Controls\\MultiSelectFilter.ascx.vb",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\KPILibrary\\KPILibrary\\Controls\\MultiSelectFilter.ascx.vb",
+              "RelativeToolTip": "KPILibrary\\Controls\\MultiSelectFilter.ascx.vb",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAJ4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2025-12-30T08:28:21.569Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "MultiSelectFilter.ascx",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\KPILibrary\\KPILibrary\\Controls\\MultiSelectFilter.ascx",
+              "RelativeDocumentMoniker": "KPILibrary\\Controls\\MultiSelectFilter.ascx",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\KPILibrary\\KPILibrary\\Controls\\MultiSelectFilter.ascx",
+              "RelativeToolTip": "KPILibrary\\Controls\\MultiSelectFilter.ascx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003302|",
+              "WhenOpened": "2025-12-30T08:28:08.558Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "Web.config",
               "DocumentMoniker": "C:\\Users\\user\\source\\repos\\KPILibrary\\KPILibrary\\Web.config",
               "RelativeDocumentMoniker": "KPILibrary\\Web.config",
               "ToolTip": "C:\\Users\\user\\source\\repos\\KPILibrary\\KPILibrary\\Web.config",
               "RelativeToolTip": "KPILibrary\\Web.config",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAD4AAAAEAAAAAAAAAA==",
+              "ViewState": "AgIAADEAAAAAAAAAAADwv0sAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
               "WhenOpened": "2025-09-08T11:00:48.721Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 8,
+              "Title": "FReport.aspx.vb",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\KPILibrary\\KPILibrary\\FReport.aspx.vb",
+              "RelativeDocumentMoniker": "KPILibrary\\FReport.aspx.vb",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\KPILibrary\\KPILibrary\\FReport.aspx.vb",
+              "RelativeToolTip": "KPILibrary\\FReport.aspx.vb",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2025-12-30T08:31:27.442Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "FilterBoxControl.ascx.vb",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\KPILibrary\\KPILibrary\\Controls\\FilterBoxControl.ascx.vb",
+              "RelativeDocumentMoniker": "KPILibrary\\Controls\\FilterBoxControl.ascx.vb",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\KPILibrary\\KPILibrary\\Controls\\FilterBoxControl.ascx.vb",
+              "RelativeToolTip": "KPILibrary\\Controls\\FilterBoxControl.ascx.vb",
+              "ViewState": "AgIAAKsAAAAAAAAAAAAIwCAAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2025-12-30T08:27:01.25Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "FilterBoxControl.ascx",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\KPILibrary\\KPILibrary\\Controls\\FilterBoxControl.ascx",
+              "RelativeDocumentMoniker": "KPILibrary\\Controls\\FilterBoxControl.ascx",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\KPILibrary\\KPILibrary\\Controls\\FilterBoxControl.ascx",
+              "RelativeToolTip": "KPILibrary\\Controls\\FilterBoxControl.ascx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003302|",
+              "WhenOpened": "2025-12-30T08:26:47.685Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "GetQuarterDates.aspx.vb",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\KPILibrary\\KPILibrary\\GetQuarterDates.aspx.vb",
+              "RelativeDocumentMoniker": "KPILibrary\\GetQuarterDates.aspx.vb",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\KPILibrary\\KPILibrary\\GetQuarterDates.aspx.vb",
+              "RelativeToolTip": "KPILibrary\\GetQuarterDates.aspx.vb",
+              "ViewState": "AgIAACsAAAAAAAAAAAAQwAIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2025-12-30T08:24:54.846Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "GetQuarterDates.aspx",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\KPILibrary\\KPILibrary\\GetQuarterDates.aspx",
+              "RelativeDocumentMoniker": "KPILibrary\\GetQuarterDates.aspx",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\KPILibrary\\KPILibrary\\GetQuarterDates.aspx",
+              "RelativeToolTip": "KPILibrary\\GetQuarterDates.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-12-30T08:24:34.262Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Default.aspx.vb",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\KPILibrary\\KPILibrary\\Default.aspx.vb",
+              "RelativeDocumentMoniker": "KPILibrary\\Default.aspx.vb",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\KPILibrary\\KPILibrary\\Default.aspx.vb",
+              "RelativeToolTip": "KPILibrary\\Default.aspx.vb",
+              "ViewState": "AgIAACYCAAAAAAAAAAAqwF8CAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2025-10-03T07:17:27.211Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
               "Title": "Default.aspx",
               "DocumentMoniker": "C:\\Users\\user\\source\\repos\\KPILibrary\\KPILibrary\\Default.aspx",
               "RelativeDocumentMoniker": "KPILibrary\\Default.aspx",
@@ -63,8 +200,7 @@
               "RelativeToolTip": "KPILibrary\\Default.aspx",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2025-09-08T10:00:29.195Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-08T10:00:29.195Z"
             }
           ]
         }
